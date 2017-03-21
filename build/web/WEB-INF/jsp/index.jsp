@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,13 +82,13 @@ $(document).ready(function(){
                 //------------Kiem tra san bay di != san bay den-------------------
                 if(masanbaydi===masanbayden)
                 {
-                    document.getElementById("thongbao").innerHTML = "sân bay đi phải khác sân bay đến!";
+                    document.getElementById("thongbao").innerHTML = "<spring:message code="lable.notification.AirportDepartureMustBeAnotherAirportArrival" text="Sân bay đi phải khác sân bay đến"/>";
                     $("#myModal4").modal({backdrop: true});                  
                 }
                 //------------Kiem tra ngay di != null-------------------
                 else if(ngaydi==="")
                 {
-                    document.getElementById("thongbao").innerHTML = "vui lòng chọn ngày đi!";
+                    document.getElementById("thongbao").innerHTML = "<spring:message code="lable.notification.PleaseSelectADate" text="Vui lòng chọn ngày đi"/>";
                     $("#myModal4").modal({backdrop: true});
                 }
                 //------------Nếu thỏa các input thì mới tìm vé-------------------
@@ -122,32 +123,7 @@ $(document).ready(function(){
 	<%
     	String session_user=(String)session.getAttribute("username");
     %>
-	<header class="trasparent_nav">
-		<div class="wrapper">
-			<div class="logo">
-				<a href="main.ute"><img src="img/logo.png" alt="Fertile"></a>
-			</div>
-
-			<nav>
-				<ul>
-					<%
-						if(session_user == null)
-						{
-							out.println("<li><a href=\"login.ute\">Đăng nhập</a></li>");
-							out.println("<li><a href=\"register.ute\">Đăng ký</a></li>");
-						}
-						else
-						{							
-							out.println("<li><a href=\"login.ute\">Xin chào ");
-							out.println(session_user);
-							out.println("</a></li>");
-							out.println("<li><a href=\"logout.ute\">Đăng xuất</a></li>");
-						}
-					%>
-				</ul>
-			</nav>
-		</div>
-	</header>
+	<%@ include file="/module/MenuIndex.jsp"%>
 	<!-- End trasparent_nav -->
                 
                
@@ -194,12 +170,12 @@ $(document).ready(function(){
 	<div class="panel panel-default"
 		style="margin-top: 10%; margin-left: 3%; width: 20%;position: fixed">
 		<div class="panel-heading">
-			<center>Tìm vé</center>
+			<center><spring:message code="lable.search.SearchTickets" text="Tìm vé"/></center>
 		</div>
 		<div class="panel-body">
 			<form> <!--action="timve.ute" method="post"  => đưa lên Sript sử dụng Ajax-->
 				<div class="form-group">
-					<label for="email">Sân bay đi:</label> <select name="MaSanBayDi" id="MaSanBayDi"
+					<label for="email"><spring:message code="lable.search.From" text="Sân bay đi"/>:</label> <select name="MaSanBayDi" id="MaSanBayDi"
 						class="form-control">
 						<c:forEach var="f" items="${ListSanBay}">
 							<option value="${f.getMaSanBay()}">${f.getTenSanBay()}</option>
@@ -207,7 +183,7 @@ $(document).ready(function(){
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="email">Sân bay đến:</label> <select name="MaSanBayDen" id="MaSanBayDen"
+					<label for="email"><spring:message code="lable.search.To" text="Sân bay đến"/></label> <select name="MaSanBayDen" id="MaSanBayDen"
 						class="form-control">
 						<c:forEach var="f" items="${ListSanBay}">
 							<option value="${f.getMaSanBay()}">${f.getTenSanBay()}</option>
@@ -215,17 +191,19 @@ $(document).ready(function(){
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="email">Ngày đi:</label> <input type="date" id="NgayDi"
+					<label for="email"><spring:message code="lable.search.Departure" text="Ngày đi"/></label> <input type="date" id="NgayDi"
 						class="form-control" name="NgayDi">
 				</div>
 				<center>
-					<button class="btnCustom dobong" id="btntimve" >Tìm vé</button>
+					<button class="btnCustom dobong" id="btntimve" ><spring:message code="lable.search.SearchTickets" text="Tìm vé"/></button>
+                                        
 				</center>
 			</form>
 		</div>
+                        
 	</div>
         
-        <!--Phần show nội dung danh sách vé tìm được, phần này được lấy từ timve.jsp do Ajax đỗ vào-->
+        <!--Phần show nội dung danh sách vé tìm được, phần này được lấy từ timve.jsp do Ajax trên scrip xử lý-->
         <div  id="noidung">
         </div>
 

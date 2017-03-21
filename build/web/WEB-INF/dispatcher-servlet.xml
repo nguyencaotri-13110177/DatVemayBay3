@@ -45,5 +45,20 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    
+    <!--
+    khai báo đa ngôn ngữ trong spring
+    -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          p:basenames="/WEB-INF/i18n/messages"
+          p:defaultEncoding="UTF-8" />
+    
+    <mvc:interceptors>    
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang"/>
+    </mvc:interceptors>
+ 
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
+          p:defaultLocale="vi" /><!--Chọn ngôn ngữ default-->
 
 </beans>
