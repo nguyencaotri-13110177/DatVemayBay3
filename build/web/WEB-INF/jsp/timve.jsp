@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,29 +51,28 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 
 		<div class="panel panel-default"
 		style="margin-top: 10%; margin-right: 3.5%; width: 70%; float: right">
-		<div class="panel-heading">
-			<center>Thông tin chuyến bay</center>
-		</div>
+		
 		<div class="panel-body">
 
 			<div class="row">
-				<span class="left"> &#x2708; SB Đi - SB Đến:
+				<span class="left"> &#x2708;
 					${ListKetQuaTimVe.get(0).getTenSanBayDi()} &#8594&nbsp </span> <span>${ListKetQuaTimVe.get(0).getTenSanBayDen()}</span>
 			</div>
 
 			<div class="row">
-				<span class="left"> &#x1f550; Ngày Đi - Ngày Đến:
-					${ListKetQuaTimVe.get(0).getNgayDi()} &#8594&nbsp </span> <span>${ListKetQuaTimVe.get(0).getNgayDen()}</span>
+				<span class="left"> &#x1f550;
+					${ListKetQuaTimVe.get(0).getNgayDi()}</span>
 			</div>
 			<form:form action="thongtindatve.ute" method="post">
 			<table class="sortable">
 				<tr>
-					<th>Hãng</th>
-					<th>Mã máy bay</th>
-					<th>Mã ghế</th>
-					<th>Giờ đi</th>
-					<th>Giờ đến</th>
-					<th>Giá</th>
+					<th><spring:message code="lable.ifofli.Airline" text="Hãng"/></th>
+					
+					
+					<th><spring:message code="lable.ifofli.Depart" text="Khởi hành"/></th>
+					<th><spring:message code="lable.ifofli.Arrive" text="Đến nơi"/></th>
+                                        
+					<th><spring:message code="lable.ifofli.Price" text="Giá"/></th>
 					<th></th>
 					<th>Đặt nhiều vé</th>
 				</tr>
@@ -81,10 +81,11 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 					<c:forEach var="f" items="${ListKetQuaTimVe}">
 						<tr>
 							<td><p hidden>1</p> <img src="img/VN.png" alt="Fertile"></td>
-							<td>${f.getMaMayBay()}</td>
-							<td>${f.getMaGhe()}</td>
+							
+							
 							<td>${f.getGioDi()}</td>
 							<td>${f.getGioDen()}</td>
+                                                        
 							<td>${f.getGia()}</td>
 							<td><a
 								href="${pageContext.request.contextPath}/thongtindatve.ute?MaChuyenBay=${f.getMaChuyenBay()}&MaGhe=${f.getMaGhe()}&Gia=${f.getGia()}&Hang=VietNam AirLine"

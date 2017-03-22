@@ -4,5 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="thu1"/>
         <group/>
+        <group name="Group1">
+            <file>file:/C:/Users/tri/Desktop/New%20folder/DatVemayBay3/web/module/MenuIndex.jsp</file>
+            <file>file:/C:/Users/tri/Desktop/New%20folder/DatVemayBay3/web/WEB-INF/jsp/index.jsp</file>
+            <file>file:/C:/Users/tri/Desktop/New%20folder/DatVemayBay3/web/WEB-INF/dispatcher-servlet.xml</file>
+        </group>
     </open-files>
 </project-private>
